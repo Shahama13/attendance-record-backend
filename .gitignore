@@ -1,0 +1,41 @@
+# Environment files — never commit real secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json.bak
+
+# Python (ocr-service)
+ocr-service/__pycache__/
+ocr-service/*.pyc
+ocr-service/.venv/
+ocr-service/venv/
+ocr-service/*.egg-info/
+
+# Docker
+*.pid
+
+# Postgres data (if you ever bind-mount locally instead of using a named volume)
+pgdata/
+db_data/
+
+# Logs
+*.log
+logs/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+.idea/
+
+# Build output (if any)
+dist/
+build/

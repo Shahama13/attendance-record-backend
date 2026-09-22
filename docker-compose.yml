@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: daryas
+      POSTGRES_PASSWORD: daryas_password
+      POSTGRES_DB: daryas_attendance
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U daryas -d daryas_attendance"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      ocr:
+        condition: service_started
+    environment:
+      DATABASE_URL: postgres://daryas:daryas_password@db:5432/daryas_attendance
+      JWT_SECRET: change-this-to-a-long-random-string
+      PORT: 4000
+      CORS_ORIGIN: "*"
+      OCR_SERVICE_URL: http://ocr:5001
+      NODE_ENV: production
+    ports:
+      - "4000:4000"
+
+  ocr:
+    build: ./ocr-service
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+
+volumes:
+  db_data:
