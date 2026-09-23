@@ -112,7 +112,7 @@ docker compose exec api npm run seed
 
 Seeded logins are unchanged in spirit but now include **two** supervisors per
 campus (min-2 rule): `sup.north` / `sup.north2` / `sup.south` / `sup.south2`,
-plus `admin` / `hr` — all password `ChangeMe123!`.
+plus `admin` / `hr` — all password `123456`.
 
 **Note on `ocr-service/Dockerfile`:** the original Dockerfile for this
 service wasn't included in what was uploaded to me, so the one in this zip

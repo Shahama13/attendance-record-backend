@@ -50,12 +50,12 @@ const EMPLOYEES = {
 // Default seed users — CHANGE THESE PASSWORDS before any real deployment.
 // Two supervisors per campus now, matching the "min 2 supervisors" rule.
 const USERS = [
-  { username: "admin", password: "ChangeMe123!", full_name: "Muscat Admin", role: "admin", campus: null },
-  { username: "hr", password: "ChangeMe123!", full_name: "HR Officer", role: "hr", campus: null },
-  { username: "sup.north", password: "ChangeMe123!", full_name: "North Campus Supervisor", role: "supervisor", campus: "north" },
-  { username: "sup.north2", password: "ChangeMe123!", full_name: "North Campus Supervisor 2", role: "supervisor", campus: "north" },
-  { username: "sup.south", password: "ChangeMe123!", full_name: "South Campus Supervisor", role: "supervisor", campus: "south" },
-  { username: "sup.south2", password: "ChangeMe123!", full_name: "South Campus Supervisor 2", role: "supervisor", campus: "south" },
+  { username: "admin", password: "123456", full_name: "Muscat Admin", role: "admin", campus: null },
+  { username: "hr", password: "123456", full_name: "HR Officer", role: "hr", campus: null },
+  { username: "sup.north", password: "123456", full_name: "North Campus Supervisor", role: "supervisor", campus: "north" },
+  { username: "sup.north2", password: "123456", full_name: "North Campus Supervisor 2", role: "supervisor", campus: "north" },
+  { username: "sup.south", password: "123456", full_name: "South Campus Supervisor", role: "supervisor", campus: "south" },
+  { username: "sup.south2", password: "123456", full_name: "South Campus Supervisor 2", role: "supervisor", campus: "south" },
 ];
 
 async function seed() {
@@ -106,7 +106,7 @@ async function seed() {
     await client.query("COMMIT");
     console.log("Seed complete:");
     console.log(`  1 site, ${CAMPUSES.length} campuses, ${EMPLOYEES.north.length + EMPLOYEES.south.length} employees, ${USERS.length} users`);
-    console.log("  Login with any of:", USERS.map((u) => u.username).join(", "), "(password: ChangeMe123!)");
+    console.log("  Login with any of:", USERS.map((u) => u.username).join(", "), "(password: 123456)");
   } catch (err) {
     await client.query("ROLLBACK");
     throw err;

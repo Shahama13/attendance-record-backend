@@ -10,8 +10,6 @@ services:
       POSTGRES_DB: daryas_attendance
     volumes:
       - db_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U daryas -d daryas_attendance"]
       interval: 5s
