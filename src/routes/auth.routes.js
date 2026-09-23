@@ -54,8 +54,12 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const { rows } = await pool.query(
-      `SELECT u.id, u.username, u.full_name, u.role, u.campus_id, c.code AS campus_code, c.name AS campus_name
-       FROM users u LEFT JOIN campuses c ON c.id = u.campus_id
+      `SELECT u.id, u.username, u.full_name, u.role, u.campus_id,
+              c.code AS campus_code, c.name AS campus_name,
+              c.site_id, s.name AS site_name
+       FROM users u
+       LEFT JOIN campuses c ON c.id = u.campus_id
+       LEFT JOIN sites s ON s.id = c.site_id
        WHERE u.id = $1`,
       [req.user.id]
     );
